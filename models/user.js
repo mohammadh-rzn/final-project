@@ -7,7 +7,7 @@ const UserShema = new Schema({
         required: true,
         trim: true,
         maxlength: 30,
-        minlength: 30
+        minlength: 3
     },
     lastName: {
         type: String,
