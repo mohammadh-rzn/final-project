@@ -1,0 +1,25 @@
+<div class="container">    
+    <div class="card bg-light " style="width: 600px; margin-left: 250px; margin-top: 100px;">
+    <article class="card-body mx-auto" style="max-width: 300px;">
+        <form onsubmit="return mySubmitFunction(event)">
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+             </div>
+            <input name="" class="form-control" placeholder="Username" type="text" id="username">
+        </div> <!-- form-group// -->
+        <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input class="form-control" placeholder="password" type="password" id="pass">
+        </div> <!-- form-group// -->                                   
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" onclick="login()"> Log In  </button>
+        </div> <!-- form-group// -->      
+        <p class="text-center">Don't have an account? <a href="signup">Sign Up</a> </p>                                                                 
+    </form>
+    </article>
+    </div> <!-- card.// -->
+    
+    </div> 

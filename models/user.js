@@ -40,7 +40,6 @@ const UserShema = new Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
     },
     role: {
         type: String,
@@ -50,6 +49,9 @@ const UserShema = new Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    avatar:{
+        type:String
     }
 });
 

@@ -1,0 +1,28 @@
+.card {
+    height: 900px;
+    background-color: rgba(20, 175, 180, 0.5) !important;
+    padding: 20px;
+    border-radius: 30px;
+    color: white;
+    
+}
+.container {
+    width: 33%;
+    height: 100%;
+    float: left;
+    padding: 50px;
+}
+.card > div{
+    margin-top: 20px;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(38, 13, 126);
+}
