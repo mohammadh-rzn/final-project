@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('../partials/head')-%>
+    <link rel="stylesheet" href="tooltip.css">
+</head>
+<body>
+    <%if(locals.user){%>
+        <%-include('../partials/navbarLogin', {user:user})-%>
+    <%}else{%>
+        <%-include('../partials/navbar')-%>
+    <%}%>
+    <%-include('../partials/allArticlesBody', {data:data})-%>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="allArticles.js"></script>
+</body>
+</html>

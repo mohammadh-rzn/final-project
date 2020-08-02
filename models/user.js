@@ -51,7 +51,20 @@ const UserShema = new Schema({
         default: Date.now
     },
     avatar:{
-        type:String
+        type:String,
+        default:'avatardefault_92824.png'
+    },
+    articleAvatar:{
+        type:String,
+        default:'book.png'
+    },
+    editingArticle:{
+        type: Boolean,
+        default:false
+    },
+    creatingArticle:{
+        type: Boolean,
+        default: false
     }
 });
 

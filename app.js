@@ -18,10 +18,12 @@ mongoose.connect('mongodb://localhost:27017/final-project', {
 });
 
 const apiRouter = require('./routes/api');
-const userRouter = require('./routes/users')
+const userRouter = require('./routes/users');
+const commentRouter = require('./routes/comments');
+const articleRouter = require('./routes/articles');
 const app = express();
 
-
+app.use(express.static('uploads'));
 
 app.use(session({
   key: 'user_sid',
@@ -56,13 +58,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRouter);
 app.use('/users', userRouter);
+app.use('/comments', commentRouter);
+app.use('/articles', articleRouter);
 app.use((req, res, next) => {
 	console.log(req.cookies);
 	console.log(req.session);
 	next();
 });
 
-app.get('/hello', function(req, res){
-  res.send('hello');
+app.get('/', function(req, res){
+  if(!req.session){
+    res.render('pages/home');
+  }
+  else{
+    res.render('pages/home',{user: req.session.user } );
+  }
+  
 })
 app.listen(3000);

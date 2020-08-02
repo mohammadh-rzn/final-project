@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('../partials/head')-%>
+    <script src="https://cdn.tiny.cloud/1/awopkoewb89ja1twu70wegw2ccumetgac893y5l4k3rlnpjt/tinymce/5/tinymce.min.js"
+referrerpolicy="origin"></script>
+</head>
+<body>
+    <%if(locals.user){%>
+        <%-include('../partials/navbarLogin', {user:user})-%>
+    <%}else{%>
+        <%-include('../partials/navbar')-%>
+    <%}%>
+    <%-include('../partials/articleReadOnlyBody', {data:data})-%>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="articleReadOnly.js"></script>
+</body>
+</html>

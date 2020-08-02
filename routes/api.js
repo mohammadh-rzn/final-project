@@ -55,7 +55,7 @@ let a = async function(){
 
 }
 a();
-
+//commment 
 router.get('/login', function(req, res){
     res.render('pages/login');
 })
@@ -68,6 +68,8 @@ router.post('/loginCheck', function(req, res){
         else{
             console.log(user[0]);
             req.session.user = user[0];
+            req.session.user.editingArticle = false;
+            req.session.user.creatingArticle = false;
             res.send('correct');
         }    
     })
@@ -76,9 +78,14 @@ router.get('/dashboard', checkSession, function(req, res){
     res.render('pages/dashboard', {user: req.session.user});
 })
 
+router.get('/logout', function(req, res){
+    req.session.destroy();
+    res.redirect('http://localhost:3000/')
+})
 
-
-
+router.get('/addArticlePage', function(req, res){
+    res.redirect('http://localhost:3000/articles/addArticlePage');
+})
 
 router.use(express.static('public'));
 router.use(express.static('uploads'));

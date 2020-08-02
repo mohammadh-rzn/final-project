@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('../partials/head')-%>
+    <script src="https://cdn.tiny.cloud/1/awopkoewb89ja1twu70wegw2ccumetgac893y5l4k3rlnpjt/tinymce/5/tinymce.min.js"
+referrerpolicy="origin"></script>
+</head>
+<body>
+    <%-include('../partials/navbarLogin', {user: user})-%>
+    <%-include('../partials/editArticleBody', {data: data, user: user})-%>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="editArticle.js"></script>
+</body>
+</html>

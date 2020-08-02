@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="/api/dashboard">Dashboard</a>
+        <a class="nav-item nav-link active" href="/articles/myArticles">My articles</a>
+        <a class="nav-item nav-link active" href="/articles/allArticles">All articles</a>
+        <a class="nav-item nav-link active " href="/api/addArticlePage" style="color: white; background-color: rgba(16, 212, 42, 0.808); height: 40px; border-radius: 5px;">Add an Article</a>
+        
+        <p style="margin-left: 750px;  margin-top: 9px;"> <%=user.userName%></p>
+        
+        <img src="<%=user.avatar%>" alt="" style="border-radius: 50%; width: 50px; height: 50px; float: right; margin-left: 30px;">
+        <a class="nav-item nav-link active" href="/api/logout" style="margin-left: 20px;">Log out <img src="img_284036.png" alt="" style="border-radius: 50%;width: 25px; height: 25px;"></a>
+      </div>
+    </div>
+  </nav>

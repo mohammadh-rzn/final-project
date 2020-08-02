@@ -8,6 +8,11 @@ router.get('/hello', function (req, res) {
 })
 const path = require('path');
 
+const checkAdmin = function(req, res, next){
+    if(req.session.user.role != 'admin')return res.send('You do not have access to do this');
+
+    next();
+}
 router.put('/editP/:id', function (req, res) {
     User.findByIdAndUpdate(req.params.id, req.body, {
         new: true
@@ -69,7 +74,7 @@ router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
             return console.log(err);
         }
         if (req.session.user.avatar) {
-            fs.unlinkSync(`public/${req.session.user.avatar}`)
+            fs.unlinkSync(`uploads/${req.session.user.avatar}`)
         };
         req.session.user.avatar = req.file.filename;
         res.redirect('http://localhost:3000/api/dashboard')
@@ -78,7 +83,7 @@ router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
 })
 
 
-
+router.delete('/delete/:userId', checkAdmin, )
 
 
 

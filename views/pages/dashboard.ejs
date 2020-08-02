@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="dashStyle.css">
 </head>
 <body>
+    <%if(locals.user){%>
+        <%-include('../partials/navbarLogin', {user:user})-%>
+    <%}else{%>
+        <%-include('../partials/navbar')-%>
+    <%}%>    
     <%-include('../partials/dashboardForm', {user: user}) -%>
     <script src="jquery-3.4.1.js"></script>
     <script src="dashboard.js"></script>

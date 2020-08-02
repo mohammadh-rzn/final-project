@@ -1,14 +1,13 @@
 
 <div class="container">
     <div class="card">
-    <img src="<%=user.avatar%>" alt="" style="width: 200px; height: 200px; border-radius: 50%; margin-top: 10px; margin-left: 80px; margin-bottom: 10px;">
-    <form action="http://localhost:3000/users/uploadfile" enctype="multipart/form-data" method="POST">
-        <label class="custom-file-upload">
-            <input type="file" name = "myFile"/>
-            <i class="fa fa-search" aria-hidden="true"></i>
-            Browse
-        </label> 
-        <button type="submit" class="btn btn-success edit" style="margin-left: 50px; margin-bottom: 5px; float: right;"> <i class="fa fa-cloud-upload"></i> Upload</button>
+    <img src="<%=user.avatar%>" alt="" style="width: 200px; height: 200px; border-radius: 50%; margin-top: 10px; margin-left: 130px; margin-bottom: 10px;">
+    <form action="http://localhost:3000/users/uploadfile" enctype="multipart/form-data" method="POST" id="imgUp">
+         <center><label class="btn btn-success">
+            <input type="file" name = "myFile"/ onchange="submitIt()">
+            Change profile picture
+        </label> </center>
+        <button type="submit" class="btn btn-success " style="margin-left: 50px; margin-bottom: 5px; float: right; display: none;"> <i class="fa fa-cloud-upload"></i> Upload</button>
      </form>
     <div>First Name: <input type="text" class="userInfo" id="firstName" style="float: right;" value="<%=user.firstName%>" disabled></div>
     <div>Last Name: <input type="text"class="userInfo" id="lastName" style="float: right;" value="<%=user.lastName%>"disabled></div>
@@ -18,7 +17,7 @@
     <div  class="userInfoP" style="display: none;">password: <input type="password"class="userInfoP" id="pass" style="float: right;display: none ;"disabled></div>
     <div class="userInfoP" style="display: none;" >confirm password: <input type="password"class="userInfoP" id="cpass" style="float: right; display: none;"disabled></div>
     <button type="button" class="btn btn-info editMe" style="margin-top:10px ;" onclick="openEdit()">Edit</button>
-    <button type="button" class="btn btn-dark editp" style="margin-top:10px ;" onclick="openEditP()">Edit password</button>
+    <button type="button" class="btn btn-dark editp" style="margin-top:10px ;" id="EditPassword" onclick="openEditP()">Edit password</button>
     <button type="button" class="btn btn-success edit" style="margin-top:10px ; display: none;" onclick="Edit()">Apply Changes</button>
     <button type="button" class="btn btn-warning edit" style="margin-top:10px ; display: none;" onclick="cancel()">Cancel</button>
     <input type="text" class="sessionId" value="<%=user._id%>" style="display: none;">

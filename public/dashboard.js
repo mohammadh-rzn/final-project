@@ -29,6 +29,7 @@ function cancel() {
         $('.userInfoP').css('display', 'none');
         $('.userInfoP').prop('disabled', true);
         $('.userInfo').prop('disabled', true);
+        $('#EditPassword').css('display', 'block');
     })
 }
 
@@ -83,5 +84,10 @@ function Edit() {
                 }
             })
         }
+    })
+}
+function submitIt(){
+    $(document).ready(function(){
+        $('#imgUp').submit();
     })
 }
