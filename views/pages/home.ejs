@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
     <%-include('../partials/head')-%>
+    <style>
+        body {
+          background-image: url('homePageBack.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+        </style>
 </head>
 <body>
     <%if(locals.user){%>
@@ -13,7 +21,10 @@
     <%}else{%>
         <%-include('../partials/navbar')-%>
     <%}%>
-    <h1>best platform for publishing your articles online</h1>
+    <center><img src="me2.jpg" alt="" style="border-radius: 50%; width: 200px; height: 200px; margin-top: 40px;"></center>
+    <center><h1 style="margin-top: 20px;">Mohammad Hossein rezania</h1></center>
+    <center><h4 style="margin-top: 20px;">Back-End Developer</h4></center>
+    <center><h5 style="margin-top: 20px;">Developer of this website</h5></center>
 
 </body>
 </html>

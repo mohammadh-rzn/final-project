@@ -11,9 +11,16 @@
           </tr>
         </thead>
         <tbody>
-            <% for(let i = 0; i < data.length; i++){ %>
+          <%if(user.role == "admin"){%>
+            <%for(let i = 0; i < data.length; i++){%>
+              <%-include('../partials/articleListAd', {articleList:data[i]})-%>
+            <%}%>
+            <%}else{%>
+              <% for(let i = 0; i < data.length; i++){ %>
                 <%- include('../partials/articleList',{articleList: data[i]}) %>
               <%}%>
+            <%}%>
+            
         </tbody>
       </table>
 

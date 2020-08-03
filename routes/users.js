@@ -88,20 +88,25 @@ router.delete('/delete/:userId', checkAdmin, function(req, res){
     User.findByIdAndDelete(req.params.userId, (err, data)=>{
         if(err){
             console.log(err);
+            res.send('something went wrong');
         }
-        
+        else res.send(true);
     })
 })
-router.put('/resetPass/userId', checkAdmin, function(req, res){
-    User.findByIdAndUpdate(req.params.userId, req.body, {new: true}, (err, data)=>{
-        if(err){
-            console.log(err);
-        }
-        
+router.put('/resetPass/:userId', checkAdmin, function(req, res){
+    User.findById(req.params.userId, (err, blogger)=>{
+        User.findByIdAndUpdate(req.params.userId,{password: blogger.mobile} , {new: true}, (err, data)=>{
+            if(err){
+                console.log(err);
+                res.send('something went wrong')
+            }
+            res.send("Password changed succesfully")
+        })
     })
+
 })
 router.get('/allUsers', checkAdmin, function(req, res){
-    User.find({}, (err, data)=>{
+    User.find({userName: {$ne: 'reza'}}, (err, data)=>{
         if(err){
             console.log(err);
         }

@@ -17,8 +17,8 @@ tinymce.init({
       if (a === ' ') {
         spaceh = j;
       }
-      if (j - brh >= 60) {
-        if (j - spaceh >= 60) {
+      if (j - brh >= 70) {
+        if (j - spaceh >= 70) {
           let h = [s.slice(0, j), '<br>', s.slice(j)].join("");
           console.log(h);
           s = h;

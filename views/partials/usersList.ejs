@@ -1,0 +1,14 @@
+<tr id="<%=userList._id%>">
+    <td><img src="<%=userList.avatar%>" alt="" style="width: 50px; height: 50px; border-radius: 50%; float: left;"></td>
+    <td><h6 style="float: left;"><%=userList.userName%></h6></td>
+
+    <td><p style="float: left;"><%=userList.firstName%></p></td>
+    <td><p style="float: left;"><%=userList.lastName%></p></td>
+    <td><p style="float: left;"><%=userList.sex%></p></td>
+    <td><p style="float: left;"><%=userList.mobile%></p></td>
+    <td><p style="float: left;"><%=userList.createdAt%></p></td>
+    <td> 
+        <input type="image" src="reset.png" style="border-radius: 50%; width: 20px; height: 20px; border: thin solid black; margin-left: 15px; margin-top: 15px;" title="Reset password" onclick="resetpass(this)" class="<%=userList._id%>">
+        <input type="image" src="delete.png" style="border-radius: 50%; width: 20px; height: 20px; border: thin solid black; margin-left: 15px; margin-top: 15px;" title="Delete" onclick="deleteThis(this)" class="<%=userList._id%>"> </td>
+</tr>
+

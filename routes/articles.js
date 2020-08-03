@@ -249,5 +249,40 @@ router.delete('/deleteComment/:commentId', checkAdmin, function(req, res){
         }
     })
 })
-
+router.delete('/deleteUserArticles/:userId', checkAdmin, function(req, res){
+    Article.deleteMany({author: req.params.userId}, function(err, data){
+        if(err){
+            console.log(err);
+            res.send('something went wrong');
+        }
+        else{
+            res.send('articles removed succesfully');
+            console.log(data);
+        }
+    })
+})
+router.delete('/deleteUserComments/:userId', checkAdmin, function(req, res){
+    Comment.deleteMany({commenter: req.params.userId}, function(err, data){
+        if(err){
+            console.log(err);
+            res.send('something went wrong');
+        }
+        else{
+            res.send('comments removed succesfully');
+            console.log(data);
+        }
+    })
+})
+router.delete('/deleteArticleComments/:articleId', checkAdmin, function(req, res){
+    Comment.deleteMany({article: req.params.articleId}, function(err, data){
+        if(err){
+            res.send('somthing went wrong');
+            console.log(err);
+        }
+        else{
+            res.send(data);
+            console.log(data);
+        }
+    })
+})
 module.exports = router;
