@@ -7,7 +7,11 @@ referrerpolicy="origin"></script>
 </head>
 <body>
     <%if(locals.user){%>
-        <%-include('../partials/navbarLogin', {user:user})-%>
+        <%if(user.role == "admin"){%>
+            <%-include('../partials/navbarAd', {user: user})-%>
+        <%}else{%>
+            <%-include('../partials/navbarLogin', {user:user})-%>
+        <%}%>
     <%}else{%>
         <%-include('../partials/navbar')-%>
     <%}%>

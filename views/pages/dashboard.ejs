@@ -6,10 +6,14 @@
 </head>
 <body>
     <%if(locals.user){%>
-        <%-include('../partials/navbarLogin', {user:user})-%>
+        <%if(user.role == "admin"){%>
+            <%-include('../partials/navbarAd', {user: user})-%>
+        <%}else{%>
+            <%-include('../partials/navbarLogin', {user:user})-%>
+        <%}%>
     <%}else{%>
         <%-include('../partials/navbar')-%>
-    <%}%>    
+    <%}%>
     <%-include('../partials/dashboardForm', {user: user}) -%>
     <script src="jquery-3.4.1.js"></script>
     <script src="dashboard.js"></script>

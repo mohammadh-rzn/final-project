@@ -6,7 +6,11 @@
 referrerpolicy="origin"></script>
 </head>
 <body>
-    <%-include('../partials/navbarLogin', {user: user})-%>
+    <%if(user.role == "admin"){%>
+        <%-include('../partials/navbarAd', {user: user})-%>
+    <%}else{%>
+        <%-include('../partials/navbarLogin',{user:user})-%>
+    <%}%>
     <%-include('../partials/addArticleBody', {user: user})-%>
     <script src="jquery-3.4.1.js"></script>
     <script src="addArticle.js"></script>

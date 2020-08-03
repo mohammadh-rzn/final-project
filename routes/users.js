@@ -100,6 +100,14 @@ router.put('/resetPass/userId', checkAdmin, function(req, res){
         
     })
 })
+router.get('/allUsers', checkAdmin, function(req, res){
+    User.find({}, (err, data)=>{
+        if(err){
+            console.log(err);
+        }
+        else res.render('pages/users', {user: req.session.user, data:data})
+    })
+})
 
 
 
@@ -110,5 +118,6 @@ router.put('/resetPass/userId', checkAdmin, function(req, res){
 
 
 router.use(express.static('public'));
+router.use(express.static('uploads'));
 
 module.exports = router;
