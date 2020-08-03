@@ -1,0 +1,12 @@
+<div>
+     
+    <div
+      style="font-size: 15px; background-color:grey; width: 500px; border-radius: 5px;  padding: 10px; margin-top: 20px;" >
+      <img src="<%=comment.commenter.avatar%>" alt=""
+      style=" border-radius: 50%; width: 50px; height: 50px; margin-right: 20px; ">
+      <p style="font-weight: 900; margin-top: -5px; margin-left: 6px; "><%=comment.commenter.userName%></p>
+      <p style="margin-top: -15px;" id="comment"><%-comment.text%></p>
+      <input type="image" src="delete.png" style="border-radius: 50%; width: 20px; height: 20px; border: thin solid black; margin-left: 15px; margin-top: 15px; background-color: red;" title="Delete" onclick="deleteThis(this)" class="<%=comment._id%>"> </td>
+    </div>
+  </div>
+  <div>

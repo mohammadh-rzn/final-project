@@ -19,7 +19,6 @@ mongoose.connect('mongodb://localhost:27017/final-project', {
 
 const apiRouter = require('./routes/api');
 const userRouter = require('./routes/users');
-const commentRouter = require('./routes/comments');
 const articleRouter = require('./routes/articles');
 const app = express();
 
@@ -58,7 +57,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRouter);
 app.use('/users', userRouter);
-app.use('/comments', commentRouter);
 app.use('/articles', articleRouter);
 app.use((req, res, next) => {
 	console.log(req.cookies);

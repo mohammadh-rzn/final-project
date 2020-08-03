@@ -74,6 +74,7 @@ router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
             return console.log(err);
         }
         if (req.session.user.avatar) {
+            if(fs.existsSync(`uploads/${req.session.user.avatar}`))
             fs.unlinkSync(`uploads/${req.session.user.avatar}`)
         };
         req.session.user.avatar = req.file.filename;
@@ -83,7 +84,22 @@ router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
 })
 
 
-router.delete('/delete/:userId', checkAdmin, )
+router.delete('/delete/:userId', checkAdmin, function(req, res){
+    User.findByIdAndDelete(req.params.userId, (err, data)=>{
+        if(err){
+            console.log(err);
+        }
+        
+    })
+})
+router.put('/resetPass/userId', checkAdmin, function(req, res){
+    User.findByIdAndUpdate(req.params.userId, req.body, {new: true}, (err, data)=>{
+        if(err){
+            console.log(err);
+        }
+        
+    })
+})
 
 
 

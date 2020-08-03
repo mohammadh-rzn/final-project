@@ -1,14 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <div ><img src="./uploads/fuuuuuuck.jpg-1595458231554.jpg" alt="" style="float: left; border-radius: 50%; width: 50px; height: 50px; margin-right: 20px; float: left;" ></div>
-  <div style="font-size: 15px; background-color: blue; width: 500px; border-radius: 5px; float: left; padding: 10px;"> <p style="font-weight: 900; margin-top: -5px;">mhrz</p><p style="margin-top: -10px;">heelllllloasdffdfdfdfaflkdsjflkasdhalkfh</p><p style="margin-top: -15px;">adlkfjhadflkfhadlfkjahlkdhafadlksfhjdfljhasdflkhjadfkljhdshflkhfdakshfhasdfhjhdjkfhjdshafjhjdashfjhakh</p>
-  </div>
-  
+  <div>
+    <div>
+     
+      <div
+        style="font-size: 15px; background-color: blue; width: 500px; border-radius: 5px;  padding: 10px; margin-top: 20px;" >
+        <img src="./uploads/fuuuuuuck.jpg-1595458231554.jpg" alt=""
+        style=" border-radius: 50%; width: 50px; height: 50px; margin-right: 20px; ">
+        <p style="font-weight: 900; margin-top: -5px; margin-left: 6px; ">mhrz</p>
+        <p style="margin-top: -15px;" id="comment"></p>
+      </div>
+    </div>
+    <div>
+      
+      <div
+        style="font-size: 15px; background-color: gray; width: 500px; border-radius: 5px; padding: 10px; margin-top: 20px;">
+        <img src="./uploads/fuuuuuuck.jpg-1595458231554.jpg" alt=""
+          style=" border-radius: 50%; width: 50px; height: 50px; margin-right: 20px;">
+        <p style="font-weight: 900; margin-top: -5px; margin-left: 6px;">mhrz</p>
+        <p style="margin-top: -15px;" id="comment2"></p>
+      </div>
+    </div>
+
+    <textarea name="" id="text" cols="80" rows="4" onkeyup="handler()"></textarea>
+    <button onclick="send()"></button>
+    <script src="jquery-3.4.1.js"></script>
+    <Script>
+      let i = 1;
+
+      function send() {
+
+        let s = document.getElementById('text').value;
+
+        let flag = true;
+        let j = 0;
+        let textl = s.length;
+        let spaceh = 0;
+        let lineh = 1;
+        let brh = 0;
+        for (let j = 0; j < textl; j++) {
+          let a = s.charAt(j);
+          if (a === ' ') {
+            spaceh = j;
+          }
+          if (j - brh >= 40) {
+            if (j - spaceh >= 40) {
+              let h = [s.slice(0, j), '<br>', s.slice(j)].join("");
+              console.log(h);
+              s = h;
+              brh = j+4;
+              textl += 4;
+            } else {
+              let h = [s.slice(0, spaceh), '<br>', s.slice(spaceh)].join("");
+              console.log("hellp");
+              s = h;
+              brh = spaceh +4;
+              textl +=4;
+            }
+          }
+        }
+        document.getElementById('comment').innerHTML = s;
+      }
+    </Script>
 </body>
+
 </html>

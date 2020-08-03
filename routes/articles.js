@@ -5,6 +5,7 @@ const Article = require('../models/article');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const Comment = require('../models/comment');
 //checkSession function for authentication
 const checkSession = function (req, res, next) {
     if (!req.session.user) return res.redirect('/api/login')
@@ -74,7 +75,17 @@ router.get('/get/:articleId', function (req, res) {
             res.status(500).send('something went wrong');
         }
         else if(req.session.user){
-            res.render('pages/articleReadOnly',{data: data, user: req.session.user})
+            Comment.find({article: req.params.articleId}).populate('commenter').exec(function(err, comments){
+                if(err){
+                    console.log(err);
+                    res.send('somthng went wrong');
+                }
+                else if(comments){
+                    
+                    res.render('pages/articleReadOnly',{data: data, user: req.session.user , comments: comments})
+                    console.log(comments);
+                }
+            })
         }
         else res.render('pages/articleReadOnly', {data: data})
     })
@@ -199,6 +210,44 @@ router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
     req.session.user.articleAvatar = req.file.filename;
     res.redirect(req.get('referer'));
 
+})
+
+//adding admin authentication function
+const checkAdmin = function(req, res, next){
+    if(req.session.user.role != 'admin')return res.send('You do not have access to do this');
+
+    next();
+}
+//adding comments
+router.post('/addComment/:articleId', checkSession, function(req, res){
+    console.log(req.session.user._id);
+    const NEW_COMMENT = new Comment({
+        text: req.body.text,
+        commenter: req.session.user._id,
+        article: req.params.articleId 
+    })
+    NEW_COMMENT.save(function(err,data){
+        if(err){
+            console.log(err);
+            res.status(500).send('something went wrong');
+        }
+        else{
+            res.send(data);
+        }
+    })
+})
+//deleting comments
+router.delete('/deleteComment/:commentId', checkAdmin, function(req, res){
+    Comment.findByIdAndDelete(req.params.commentId, function(err, data){
+        if(err){
+            console.log(err);
+            res.send('something went wrong');
+        }
+        else{
+            res.send(data);
+            console.log(data);
+        }
+    })
 })
 
 module.exports = router;

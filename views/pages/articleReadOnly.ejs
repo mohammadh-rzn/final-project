@@ -11,7 +11,17 @@ referrerpolicy="origin"></script>
     <%}else{%>
         <%-include('../partials/navbar')-%>
     <%}%>
-    <%-include('../partials/articleReadOnlyBody', {data:data})-%>
+    <%if(locals.user){%>
+        <%if(locals.user.role == "admin"){%>
+            <%-include('../partials/articleReadOnlyBodyAd', {data:data ,comments: comments})-%>
+        <%}%>
+        <%if(locals.user.role != "admin"){%>
+            <%-include('../partials/articleReadOnlybodyUs', {data:data, comments: comments})-%>
+        <%}%>
+        <%}else{%>
+            <%-include('../partials/articleReadOnlyBody', {data:data})-%>
+        <%}%>
+    
     <script src="jquery-3.4.1.js"></script>
     <script src="articleReadOnly.js"></script>
 </body>
