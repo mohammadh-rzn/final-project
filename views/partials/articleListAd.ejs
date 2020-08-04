@@ -4,6 +4,6 @@
     <td><p style="float: left;"><%=articleList.createdAt%></p></td>
     <td><p style="float: left;"><%=articleList.author.userName%></p></td>
     <td><p style="float: left;"><%=articleList.rawText.substring(0,20)%></p></td>
-    <td> <input type="image" src="readmore.png" style="border-radius: 50%; width: 20px; height: 20px; border: thin solid black; margin-left: 15px; margin-top: 15px; " title="Read more" onclick="readmore(this)" class="<%=articleList._id%>">
+    <td> <input type="image" src="readmore.png" style="border-radius: 50%; width: 20px; height: 20px; border: thin solid black; margin-left: 15px; margin-top: 15px;" id="<%=articleList._id%>" title="Read more" onclick="readmore(this.id)"  class="<%=articleList._id%>">
         <input type="image" src="delete.png" style="border-radius: 50%; width: 20px; height: 20px; border: thin solid black; margin-left: 15px; margin-top: 15px;" title="Delete" onclick="deleteThis(this)" class="<%=articleList._id%>"> </td>
 </tr>

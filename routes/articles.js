@@ -249,6 +249,7 @@ router.delete('/deleteComment/:commentId', checkAdmin, function(req, res){
         }
     })
 })
+//deleting user's articles after deleting user
 router.delete('/deleteUserArticles/:userId', checkAdmin, function(req, res){
     Article.deleteMany({author: req.params.userId}, function(err, data){
         if(err){
@@ -261,6 +262,7 @@ router.delete('/deleteUserArticles/:userId', checkAdmin, function(req, res){
         }
     })
 })
+//deleting user comments after deleting user
 router.delete('/deleteUserComments/:userId', checkAdmin, function(req, res){
     Comment.deleteMany({commenter: req.params.userId}, function(err, data){
         if(err){
@@ -273,6 +275,7 @@ router.delete('/deleteUserComments/:userId', checkAdmin, function(req, res){
         }
     })
 })
+//deleting article comments after deleting article
 router.delete('/deleteArticleComments/:articleId', checkAdmin, function(req, res){
     Comment.deleteMany({article: req.params.articleId}, function(err, data){
         if(err){

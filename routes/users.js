@@ -7,12 +7,13 @@ router.get('/hello', function (req, res) {
     res.send('hello');
 })
 const path = require('path');
-
+//adding authenticating admin function
 const checkAdmin = function(req, res, next){
-    if(req.session.user.role != 'admin')return res.send('You do not have access to do this');
+    if(req.session.user.role != 'admin')return res.status(404).send('You do not have access to do this');
 
     next();
 }
+//adding editing password route
 router.put('/editP/:id', function (req, res) {
     User.findByIdAndUpdate(req.params.id, req.body, {
         new: true
@@ -27,7 +28,7 @@ router.put('/editP/:id', function (req, res) {
     })
 })
 
-
+//adding editing personal info route
 
 router.put('/edit/:id', function (req, res) {
     User.findByIdAndUpdate(req.params.id, req.body, {
@@ -44,7 +45,7 @@ router.put('/edit/:id', function (req, res) {
 })
 
 
-
+//adding method for uploading avatar
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -58,6 +59,7 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 })
+//uploading avatar route
 router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
     const file = req.file
     if (!file) {
@@ -83,16 +85,22 @@ router.post('/uploadfile', upload.single('myFile'), (req, res, next) => {
 
 })
 
-
+//deleting a user by admin route
 router.delete('/delete/:userId', checkAdmin, function(req, res){
     User.findByIdAndDelete(req.params.userId, (err, data)=>{
         if(err){
             console.log(err);
             res.send('something went wrong');
         }
-        else res.send(true);
+        else {
+            if(fs.existsSync(`uploads/${data.avatar}`)){
+                fs.unlinkSync(`uploads/${data.avatar}`);
+            }
+            res.send(true);
+        };
     })
 })
+//password restoration route
 router.put('/resetPass/:userId', checkAdmin, function(req, res){
     User.findById(req.params.userId, (err, blogger)=>{
         User.findByIdAndUpdate(req.params.userId,{password: blogger.mobile} , {new: true}, (err, data)=>{
@@ -105,6 +113,7 @@ router.put('/resetPass/:userId', checkAdmin, function(req, res){
     })
 
 })
+//route for showing all users
 router.get('/allUsers', checkAdmin, function(req, res){
     User.find({userName: {$ne: 'reza'}}, (err, data)=>{
         if(err){

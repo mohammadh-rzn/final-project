@@ -14,7 +14,13 @@
     <%}else{%>
         <%-include('../partials/navbar')-%>
     <%}%>
-    <%-include('../partials/allArticlesBody', {data:data , user:user})-%>
+    <%if(locals.user){%>
+        <%-include('../partials/allArticlesBody', {data:data , user:user})-%>
+    <%}else{%>
+        <%-include('../partials/allArticlesBody', {data:data})-%>
+    <%}%>
+
+    
     <script src="jquery-3.4.1.js"></script>
     <script src="allArticles.js"></script>
 </body>

@@ -6,6 +6,7 @@ router.get('/signUp', function(req, res){
     console.log('hello');
     res.render('pages/signUp');
 })
+//adding user
 router.post('/addUser', function(req, res){
     const NEW_USER = new User ({
         firstName: req.body.firstName,
@@ -23,6 +24,7 @@ router.post('/addUser', function(req, res){
         return res.send(data);
     })
 });
+//checking if user have access
 const checkSession = function(req, res, next) {
     if (!req.session.user) return res.redirect('/api/login')
 
@@ -55,10 +57,12 @@ let a = async function(){
 
 }
 a();
-//commment 
+//login route
 router.get('/login', function(req, res){
     res.render('pages/login');
 })
+
+//checking  if login was succesfull
 router.post('/loginCheck', function(req, res){
     User.find({password: req.body.password, userName: req.body.username}, function(err, user){
         if(user.length === 0){
@@ -74,19 +78,22 @@ router.post('/loginCheck', function(req, res){
         }    
     })
 })
+//dashboard route
 router.get('/dashboard', checkSession, function(req, res){
     res.render('pages/dashboard', {user: req.session.user});
 })
-
+//loging out route
 router.get('/logout', function(req, res){
     req.session.destroy();
     res.redirect('http://localhost:3000/')
 })
 
+//loading add an article page
 router.get('/addArticlePage', function(req, res){
     res.redirect('http://localhost:3000/articles/addArticlePage');
 })
 
+//defining public folders
 router.use(express.static('public'));
 router.use(express.static('uploads'));
 module.exports = router;

@@ -11,15 +11,21 @@
           </tr>
         </thead>
         <tbody>
-          <%if(user.role == "admin"){%>
-            <%for(let i = 0; i < data.length; i++){%>
-              <%-include('../partials/articleListAd', {articleList:data[i]})-%>
-            <%}%>
+          <%if(locals.user){%>
+            <%if(user.role == "admin"){%>
+              <%for(let i = 0; i < data.length; i++){%>
+                <%-include('../partials/articleListAd', {articleList:data[i]})-%>
+              <%}%>
             <%}else{%>
               <% for(let i = 0; i < data.length; i++){ %>
                 <%- include('../partials/articleList',{articleList: data[i]}) %>
               <%}%>
             <%}%>
+        <%}else{%>
+          <% for(let i = 0; i < data.length; i++){ %>
+            <%- include('../partials/articleList',{articleList: data[i]}) %>
+          <%}%>
+        <%}%>
             
         </tbody>
       </table>
